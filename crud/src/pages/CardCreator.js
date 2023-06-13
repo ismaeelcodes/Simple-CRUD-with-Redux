@@ -1,9 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { carMakesData, carModelsData } from '../DummyData'
+import { carModelsData } from '../DummyData'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCard } from '../features/Cards'
 export default function CardCreator() {
+    {/* Initializing Dispatch, State Data, and our local states */}
     const dispatch = useDispatch();
     const homeData = useSelector((state) => state.cards.value);
     const [model, setModel] = React.useState('Civic');
@@ -17,7 +18,7 @@ export default function CardCreator() {
           <h2>Create your Card</h2>
           <div className="InpDiv">
             <label htmlFor="cars" className='labelCar'>Choose a car:</label>
-  
+           {/* Sets the car make */}
             <select
               className='carMake'
               value={make}
@@ -33,6 +34,7 @@ export default function CardCreator() {
               ))}
             </select>
   
+              {/* Sets the car Model */}
             <select
             className='carModel'
               value={model}
@@ -47,6 +49,7 @@ export default function CardCreator() {
               ))}
             </select>
   
+           {/* Input Reg Field */}
             <input
               className="Inp"
               placeholder="Registration Number"
@@ -55,6 +58,8 @@ export default function CardCreator() {
               }}
             />
           </div>
+
+          {/* Add Card button which dispatches the addCard Reducer in our state and sends makes a new object consisting of data to be added, then goes back to home */}
           <button
             className="loginBtn"
             onClick={() => {

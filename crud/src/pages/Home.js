@@ -7,6 +7,7 @@ import CardCreator from './CardCreator';
 import { carMakesData, carModelsData } from '../DummyData';
 
 export default function Home() {
+  // Initializing the state in our card feature, update boolean, information about the car and dispatch function.
   const homeData = useSelector((state) => state.cards.value);
   const [update, setUpdate] = React.useState(false);
   const [make, setMake] = React.useState('');
@@ -15,6 +16,8 @@ export default function Home() {
   const [cardId, setCardId] = React.useState(null);
   const dispatch = useDispatch();
 
+
+  // Takes data from the card which is being updated and sets the states according to their information
   const handleUpdate = (card) => {
     setCardId(card.id);
     setMake(card.make);
@@ -23,6 +26,8 @@ export default function Home() {
     setUpdate(true);
   };
 
+
+  // saves our updated-card by calling our UpdateCard reducer in Cards.js and sends it data, then resets our local states.
   const handleSave = () => {
     dispatch(
       updateCard({
@@ -39,12 +44,14 @@ export default function Home() {
     setCardId(null);
   };
 
+  // Maps over our Dummy Data and presents them in card and also displays the Update Inputs if Update state is true
   const mapData = homeData.map((car) => (
     <div className='CarDiv' key={car.key}>
       {update && car.id === cardId ? (
         <>
           <label htmlFor="cars" className='labelCar'>Choose a car:</label>
   
+  {/* Sets the car make */}
   <select
     className='carMake'
     value={make}
@@ -59,6 +66,8 @@ export default function Home() {
       </option>
     ))}
   </select>
+
+  {/* Sets the car model */}
   <select
               className='carModel'
               value={model}
@@ -72,6 +81,8 @@ export default function Home() {
                 </option>
               ))}
             </select>
+
+            {/* Reg No Text Field */}
           <input
             className='registrationNumber'
             value={registrationNumber}
@@ -79,6 +90,7 @@ export default function Home() {
             onChange={(e) => setRegistrationNumber(e.target.value)}
           />
         
+        {/* Save button */}
         <button className='saveBtn' onClick={handleSave}>
           Save
         </button>
@@ -86,6 +98,7 @@ export default function Home() {
         </>
       ) : (
         <>
+        {/* if No Update is happening, displays our normal cards */}
         <h3 className='CarMake'>{car.make}</h3>
        
       <span className='CarModel'>{car.model}</span>
@@ -94,6 +107,7 @@ export default function Home() {
         </>
       )}
       <div className='btnDiv'>
+        {/* Update button which shows if Update is false and gets disabled when Update is true */}
      {!update &&   <button
           className='updateBtn'
           onClick={() => handleUpdate(car)}
@@ -101,6 +115,7 @@ export default function Home() {
         >
           Update
         </button>}
+        {/* Delete Button which sends the id of the card to be deleted to the deleteCard reducer function */}
         <button
           className='deleteBtn'
           onClick={() => {
