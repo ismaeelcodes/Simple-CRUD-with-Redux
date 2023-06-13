@@ -69,3 +69,32 @@
 .btnDiv button{
   margin: 1rem;
 }
+
+.labelCar{
+  margin: 1rem;
+}
+
+.carMake{
+  margin-bottom: 0.5rem;
+}
+
+.carModel{
+  margin-bottom: 0.5rem;
+}
+
+.registrationNumber{
+  margin-bottom: 0.5rem;
+}
+
+.AddBtn{
+  padding: 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button{
+  background: grey;
+}

@@ -16,9 +16,10 @@ export default function CardCreator() {
         <div className="loginDiv">
           <h2>Create your Card</h2>
           <div className="InpDiv">
-            <label htmlFor="cars">Choose a car:</label>
+            <label htmlFor="cars" className='labelCar'>Choose a car:</label>
   
             <select
+              className='carMake'
               value={make}
               onChange={(event) => {
                 setMake(event.target.value); // Update the make state
@@ -33,6 +34,7 @@ export default function CardCreator() {
             </select>
   
             <select
+            className='carModel'
               value={model}
               onChange={(event) => {
                 setModel(event.target.value); // Update the model state

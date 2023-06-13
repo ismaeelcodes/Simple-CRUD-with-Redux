@@ -15,7 +15,16 @@ export const cardSlice = createSlice({
         state.value = state.value.filter((car) => car.id !== action.payload.id)
       },
       updateCard: (state, action) => {
-
+        const { id, make, model, registrationNumber } = action.payload;
+        const cardIndex = state.value.findIndex((card) => card.id === id);
+        if (cardIndex !== -1) {
+          state.value[cardIndex] = {
+            ...state.value[cardIndex],
+            make,
+            model,
+            registrationNumber,
+          };
+        }
       },
     }
 })
